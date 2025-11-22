@@ -24,6 +24,10 @@ if (env.AUTH_GOOGLE_CLIENT_ID && env.AUTH_GOOGLE_SECRET) {
     };
 }
 
+export function getEnabledSocialProviders() {
+    return Object.keys(socialProviders);
+}
+
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: "postgresql", // or "mysql", "postgresql", ...etc
