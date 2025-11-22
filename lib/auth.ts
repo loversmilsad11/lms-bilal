@@ -9,17 +9,25 @@ import { admin } from "better-auth/plugins"
 
 
 
+const socialProviders: Record<string, any> = {
+    github: {
+        clientId: env.AUTH_GITHUB_CLIENT_ID,
+        clientSecret: env.AUTH_GITHUB_SECRET,
+    },
+};
+
+if (env.AUTH_GOOGLE_CLIENT_ID && env.AUTH_GOOGLE_SECRET) {
+    socialProviders.google = {
+        clientId: env.AUTH_GOOGLE_CLIENT_ID,
+        clientSecret: env.AUTH_GOOGLE_SECRET,
+    };
+}
+
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: "postgresql", // or "mysql", "postgresql", ...etc
     }),
-    socialProviders: {
-        github: {
-            clientId: env.AUTH_GITHUB_CLIENT_ID,
-            clientSecret: env.AUTH_GITHUB_SECRET
-        },
-
-    },
+    socialProviders,
 
     plugins: [
         emailOTP({

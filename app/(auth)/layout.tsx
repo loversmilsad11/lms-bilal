@@ -23,7 +23,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           className="flex items-center gap-2 self-center font-medium"
           href="/"
         >
-          <Image src={Logo} alt="Logo" width={32} height={32} />
+          <Image src={Logo} alt="Logo" width={50} height={50} />
           BilalLMS.
         </Link>
         {children}

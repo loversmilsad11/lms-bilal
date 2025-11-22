@@ -8,6 +8,8 @@ export const env = createEnv({
         BETTER_AUTH_URL: z.string().url(),
         AUTH_GITHUB_CLIENT_ID: z.string().min(1),
         AUTH_GITHUB_SECRET: z.string().min(1),
+        AUTH_GOOGLE_CLIENT_ID: z.string().min(1).optional(),
+        AUTH_GOOGLE_SECRET: z.string().min(1).optional(),
         RESEND_API_KEY: z.string().min(1),
         ARCJET_KEY: z.string().min(1),
         AWS_ACCESS_KEY_ID: z.string().min(1),
@@ -15,9 +17,7 @@ export const env = createEnv({
         AWS_ENDPOINT_URL_S3: z.string().min(1),
         AWS_ENDPOINT_URL_IAM: z.string().min(1),
         AWS_REGION: z.string().min(1),
-        CHARGILY_BASE_URL: z.string().min(1).optional(),
-        CHARGILY_API_KEY: z.string().min(1).optional(),
-        CHARGILY_SECRET_KEY: z.string().min(1).optional(),
+
 
 
 
