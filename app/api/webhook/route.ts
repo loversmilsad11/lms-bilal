@@ -5,6 +5,13 @@ import { prisma } from "@/lib/db";
 
 export async function POST(req: Request) {
   try {
+    if (!env.CHARGILY_SECRET_KEY) {
+      return NextResponse.json(
+        { error: "Chargily secret key not configured" },
+        { status: 500 }
+      );
+    }
+
     const signature = req.headers.get("signature");
 
     // If there's no signature, return 400
@@ -20,7 +27,7 @@ export async function POST(req: Request) {
 
     // Calculate the signature
     const computedSignature = crypto
-      .createHmac("sha256", env.CHARGILY_SECRET_KEY!)
+      .createHmac("sha256", env.CHARGILY_SECRET_KEY)
       .update(payload)
       .digest("hex");
 

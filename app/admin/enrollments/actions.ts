@@ -5,16 +5,14 @@ import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function activateEnrollmentAction(formData: FormData) {
+export async function activateEnrollmentAction(formData: FormData): Promise<void> {
   await requireAdmin();
 
   const enrollmentId = formData.get("enrollmentId") as string;
 
   if (!enrollmentId) {
-    return {
-      status: "error",
-      message: "Enrollment ID is required",
-    };
+    redirect("/admin/enrollments?error=Enrollment ID is required");
+    return;
   }
 
   try {
@@ -29,17 +27,13 @@ export async function activateEnrollmentAction(formData: FormData) {
     });
 
     if (!enrollment) {
-      return {
-        status: "error",
-        message: "Enrollment not found",
-      };
+      redirect("/admin/enrollments?error=Enrollment not found");
+      return;
     }
 
     if (enrollment.status === "Active") {
-      return {
-        status: "success",
-        message: "Enrollment is already active",
-      };
+      redirect("/admin/enrollments?success=Enrollment is already active");
+      return;
     }
 
     // Update enrollment to Active
@@ -57,13 +51,10 @@ export async function activateEnrollmentAction(formData: FormData) {
     revalidatePath("/admin/enrollments");
     revalidatePath("/dashboard");
 
-    redirect("/admin/enrollments?success=true");
+    redirect("/admin/enrollments?success=Enrollment activated successfully");
   } catch (error) {
     console.error("Error activating enrollment:", error);
-    return {
-      status: "error",
-      message: "Failed to activate enrollment",
-    };
+    redirect("/admin/enrollments?error=Failed to activate enrollment");
   }
 }
 

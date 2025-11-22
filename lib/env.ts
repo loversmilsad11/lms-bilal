@@ -15,9 +15,9 @@ export const env = createEnv({
         AWS_ENDPOINT_URL_S3: z.string().min(1),
         AWS_ENDPOINT_URL_IAM: z.string().min(1),
         AWS_REGION: z.string().min(1),
-        CHARGILY_BASE_URL: z.string().min(1),
-        CHARGILY_API_KEY: z.string().min(1),
-        CHARGILY_SECRET_KEY: z.string().min(1),
+        CHARGILY_BASE_URL: z.string().min(1).optional(),
+        CHARGILY_API_KEY: z.string().min(1).optional(),
+        CHARGILY_SECRET_KEY: z.string().min(1).optional(),
 
 
 

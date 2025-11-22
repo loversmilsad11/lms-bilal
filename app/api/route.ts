@@ -4,6 +4,13 @@ import { error } from "console";
 
 export async function GET() {
   try {
+    if (!env.CHARGILY_SECRET_KEY) {
+      return NextResponse.json(
+        { error: "Chargily secret key not configured" },
+        { status: 500 }
+      );
+    }
+
     const options = {
       method: "POST",
       headers: {
