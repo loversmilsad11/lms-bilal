@@ -1,10 +1,8 @@
 import arcjet, { createMiddleware, detectBot } from "@arcjet/next";
-import { env } from "./lib/env";
 import { NextRequest, NextResponse } from "next/server";
-import { getSessionCookie } from "better-auth/cookies";
 
 const aj = arcjet({
-    key: env.ARCJET_KEY!,
+    key: process.env.ARCJET_KEY!,
     rules: [
         detectBot({
             mode: "LIVE",
@@ -19,7 +17,8 @@ const aj = arcjet({
 
 function adminMiddleware(request: NextRequest) {
     // Check if session cookie exists (basic check without Prisma)
-    const sessionCookie = getSessionCookie(request);
+    // Better-auth uses "better-auth.session_token" as the default cookie name
+    const sessionCookie = request.cookies.get("better-auth.session_token");
     
     // If no session cookie, redirect to login
     if (!sessionCookie) {
