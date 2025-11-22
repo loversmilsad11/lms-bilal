@@ -9,6 +9,7 @@ import { admin } from "better-auth/plugins"
 
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const socialProviders: Record<string, any> = {
     github: {
         clientId: env.AUTH_GITHUB_CLIENT_ID,
