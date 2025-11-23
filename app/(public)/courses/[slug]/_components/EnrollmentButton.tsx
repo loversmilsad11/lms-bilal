@@ -7,6 +7,7 @@ import { enrollInCourseAction } from "../actions";
 import { tryCatch } from "@/hooks/try-catch";
 import { Loader2, MessageCircle } from "lucide-react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 
 export function EnrollmentButton({
   courseId,
@@ -20,6 +21,7 @@ export function EnrollmentButton({
   whatsappNumber?: string;
 }) {
   const [Pending, startTransition] = useTransition();
+  const { data: session } = authClient.useSession();
   const whatsapp = whatsappNumber || "213777321649";
 
   function onSubmit() {
@@ -53,10 +55,12 @@ export function EnrollmentButton({
 
         // Open WhatsApp with pre-filled message
         if (result.enrollmentId) {
+          const buyerName =
+            session?.user?.name ?? session?.user?.email ?? "Guest";
           const whatsappMessage = encodeURIComponent(
-            `Hello, I want to purchase the course: ${courseTitle || "Course"}\n` +
-              `Price: ${coursePrice ? `${coursePrice} DZD` : ""}\n` +
-              `Order ID: ${result.enrollmentId}`
+            `Hello, my name is ${buyerName}. I want to purchase the course: ${
+              courseTitle || "Course"
+            }\nPrice: ${coursePrice ? `${coursePrice} DZD` : ""}\nOrder ID: ${result.enrollmentId}`
           );
           const whatsappUrl = `https://wa.me/${whatsapp}?text=${whatsappMessage}`;
           window.open(whatsappUrl, "_blank");
