@@ -12,12 +12,12 @@ export default async function CourseLayout({ children, params }: iAppProps) {
 
   const course = await getCourseSidebarData(slug);
   return (
-    <div className="flex flex-1">
-      {/* sidebar - 30% */}
-      <div className="w-80 border-r border-border shrink-0">
+    <div className="flex flex-1 flex-col md:flex-row">
+      {/* sidebar - becomes full width on small screens, fixed width on md+ */}
+      <div className="w-full md:w-80 md:shrink-0 border-b md:border-b-0 md:border-r border-border">
         <CourseSidebar course={course.course} />
       </div>
-      {/* Main Content- 70% */}
+      {/* Main Content */}
       <div className="flex-1 overflow-hidden">{children}</div>
     </div>
   );
