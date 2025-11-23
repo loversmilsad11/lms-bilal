@@ -168,9 +168,9 @@ async function SlugPage({ params }: { params: Params }) {
               <div className="flex items-center justify-between mb-6">
                 <span className="text-lg font-medium">Price:</span>
                 <span className="text-2xl font-bold text-primary">
-                  {new Intl.NumberFormat("en-US", {
+                  {new Intl.NumberFormat("fr-DZ", {
                     style: "currency",
-                    currency: "USD",
+                    currency: "DZD",
                   }).format(course.price)}
                 </span>
               </div>
@@ -262,7 +262,7 @@ async function SlugPage({ params }: { params: Params }) {
                   Watch Course
                 </Link>
               ) : (
-                <EnrollmentButton 
+                <EnrollmentButton
                   courseId={course.id}
                   courseTitle={course.title}
                   coursePrice={course.price}
