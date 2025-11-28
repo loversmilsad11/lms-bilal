@@ -6,6 +6,8 @@ export async function GET() {
         const providers = getEnabledSocialProviders();
         return NextResponse.json({ providers });
     } catch (error) {
+        console.error(error);
         return NextResponse.json({ providers: [] }, { status: 500 });
     }
 }
+
