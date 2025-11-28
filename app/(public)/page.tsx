@@ -39,19 +39,19 @@ const features: FeatureProps[] = [
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
+    name: "Bilal Ghoul",
     role: "Software Engineer",
     content: "This platform completely transformed my career. The courses are up-to-date and the community is incredibly supportive.",
     avatar: "SJ"
   },
   {
-    name: "Michael Chen",
+    name: "Mohamed Naim",
     role: "Data Scientist",
     content: "The interactive learning approach helped me grasp complex concepts much faster than traditional methods.",
     avatar: "MC"
   },
   {
-    name: "Emily Davis",
+    name: "Salim Mansouria",
     role: "Product Designer",
     content: "I love the progress tracking features. Seeing my growth motivates me to keep learning every day.",
     avatar: "ED"
@@ -63,7 +63,8 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
+        </div>
         <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 opacity-20 blur-[100px]"></div>
         
         <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto">
