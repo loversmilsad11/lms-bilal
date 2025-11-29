@@ -1,6 +1,6 @@
 import { EmptyState } from "@/components/general/EmptyState";
-import { getAllCourses } from "../data/course/get-all-courses";
-import { getEnrolledCourses } from "../data/user/gat-enrolled-courses";
+import { getAllCourses } from "../../data/course/get-all-courses";
+import { getEnrolledCourses } from "../../data/user/get-enrolled-courses";
 import { PublicCourseCard } from "../(public)/_components/PublicCourseCard";
 import { CourseProgressCard } from "./_components/CourseProgressCard";
 import { auth } from "@/lib/auth";
