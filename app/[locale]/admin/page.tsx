@@ -10,7 +10,7 @@ import {
   AdminCourseCardSkeleton,
 } from "./courses/_components/AdminCourseCard";
 import { Suspense } from "react";
-import { requireAdmin } from "../data/admin/require-admin";
+import { requireAdmin } from "../../data/admin/require-admin";
 
 export default async function AdminIndexPage() {
   await requireAdmin();
