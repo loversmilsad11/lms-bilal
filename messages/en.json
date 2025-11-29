@@ -1,0 +1,149 @@
+{
+    "Navbar": {
+        "home": "Home",
+        "courses": "Courses",
+        "about": "About",
+        "careers": "Careers",
+        "dashboard": "Dashboard",
+        "login": "Login",
+        "getStarted": "Get Started",
+        "account": "Account",
+        "instructors": "Instructors"
+    },
+    "Hero": {
+        "badge": "The Future of Online Education",
+        "title": "Elevate your Learning Experience",
+        "description": "Discover a new way to learn with our modern, interactive learning management system. Access high-quality courses anytime, anywhere.",
+        "explore": "Explore Courses",
+        "signIn": "Sign in",
+        "students": "Students",
+        "courses": "Courses",
+        "support": "Support"
+    },
+    "Features": {
+        "title": "Why Choose Us?",
+        "description": "We provide the tools and resources you need to succeed in your learning journey.",
+        "comprehensive": {
+            "title": "Comprehensive Courses",
+            "description": "Access a wide range of carefully curated courses designed by industry experts."
+        },
+        "interactive": {
+            "title": "Interactive Learning",
+            "description": "Engage with interactive content, quizzes, and assignments to enhance your learning experience."
+        },
+        "progress": {
+            "title": "Progress Tracking",
+            "description": "Monitor your progress and achievements with detailed analytics and personalized dashboards."
+        },
+        "community": {
+            "title": "Community Support",
+            "description": "Join a vibrant community of learners and instructors to collaborate and share knowledge."
+        }
+    },
+    "Testimonials": {
+        "title": "What Our Students Say",
+        "description": "Hear from learners who have achieved their goals with our platform."
+    },
+    "CTA": {
+        "title": "Ready to Start Your Learning Journey?",
+        "description": "Join thousands of learners today and unlock your potential with our expert-led courses.",
+        "button": "Get Started Now"
+    },
+    "Footer": {
+        "platform": "LMS Platform",
+        "platformDesc": "Empowering learners worldwide with cutting-edge courses and interactive experiences.",
+        "platformHeader": "Platform",
+        "browseCourses": "Browse Courses",
+        "instructors": "Instructors",
+        "pricing": "Pricing",
+        "companyHeader": "Company",
+        "aboutUs": "About Us",
+        "careers": "Careers",
+        "contact": "Contact",
+        "stayUpdated": "Stay Updated",
+        "subscribe": "Subscribe",
+        "rights": "LMS Platform. All rights reserved."
+    },
+    "About": {
+        "badge": "Our Story",
+        "title": "Empowering the Future of Education",
+        "description": "We are dedicated to democratizing education through technology, making high-quality learning accessible to everyone, everywhere.",
+        "mission": {
+            "title": "Our Mission",
+            "description": "To provide a comprehensive learning platform that bridges the gap between traditional education and modern industry needs."
+        },
+        "vision": {
+            "title": "Our Vision",
+            "description": "A world where quality education is a fundamental right, not a privilege, accessible to anyone with an internet connection."
+        },
+        "values": {
+            "title": "Our Values",
+            "description": "Excellence, Accessibility, Innovation, and Community are the pillars that guide every decision we make."
+        },
+        "stats": {
+            "students": "Active Students",
+            "instructors": "Expert Instructors",
+            "courses": "Courses",
+            "rating": "Average Rating"
+        },
+        "team": {
+            "title": "Meet Our Team",
+            "description": "Passionate educators and technologists working together to build the future of learning."
+        }
+    },
+    "Careers": {
+        "badge": "Join Our Team",
+        "title": "Build the Future of Learning",
+        "description": "We're on a mission to democratize education. Join us and help shape the lives of millions of learners around the world.",
+        "viewOpenings": "View Openings",
+        "whyWork": {
+            "title": "Why Work With Us?",
+            "description": "We believe in taking care of our people so they can take care of our students."
+        },
+        "benefits": {
+            "health": {
+                "title": "Health & Wellness",
+                "description": "Comprehensive health insurance and wellness programs to keep you healthy."
+            },
+            "remote": {
+                "title": "Flexible Work",
+                "description": "Work from anywhere with our remote-first culture and flexible hours."
+            },
+            "learning": {
+                "title": "Learning Budget",
+                "description": "Annual stipend for courses, conferences, and books to help you grow."
+            },
+            "events": {
+                "title": "Team Events",
+                "description": "Regular retreats and team building activities to connect with colleagues."
+            }
+        },
+        "positions": {
+            "title": "Open Positions",
+            "description": "Find the role that fits your skills and passion.",
+            "viewAll": "View All Roles",
+            "apply": "Apply Now"
+        }
+    },
+    "Instructors": {
+        "badge": "Our Instructors",
+        "title": "Learn from Industry Experts",
+        "description": "Our instructors are experienced professionals passionate about sharing their knowledge and helping you succeed.",
+        "stats": {
+            "instructors": "Expert Instructors",
+            "students": "Students Taught",
+            "courses": "Courses Created",
+            "rating": "Average Rating"
+        },
+        "categories": {
+            "title": "Browse by Expertise",
+            "all": "All Instructors",
+            "development": "Development",
+            "design": "Design",
+            "business": "Business",
+            "marketing": "Marketing"
+        },
+        "viewProfile": "View Profile",
+        "viewCourses": "View Courses"
+    }
+}

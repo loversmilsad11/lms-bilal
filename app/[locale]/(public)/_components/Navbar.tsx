@@ -8,28 +8,35 @@ import { ThemeToggle } from "@/components/ui/themeToggle";
 import { authClient } from "@/lib/auth-client";
 import { buttonVariants } from "@/components/ui/button";
 import UserDropdown from "./UserDropdown";
-
-const navigationItems = [
-  { name: "Home", href: "/" },
-  { name: "Courses", href: "/courses" },
-  { name: "Dashboard", href: "/dashboard" },
-];
+import { useTranslations, useLocale } from 'next-intl';
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 function Navbar() {
+  const t = useTranslations('Navbar');
+  const locale = useLocale();
   const { data: session, isPending } = authClient.useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navigationItems = [
+    { name: t('home'), href: `/${locale}` },
+    { name: t('courses'), href: `/${locale}/courses` },
+    { name: t('instructors'), href: `/${locale}/instructors` },
+    { name: t('about'), href: `/${locale}/about` },
+    { name: t('careers'), href: `/${locale}/careers` },
+    { name: t('dashboard'), href: `/${locale}/dashboard` },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-[backdrop-filter]:bg-background/60">
       <div className="container flex min-h-16 items-center max-auto px-4 md:px-6 lg:px-8">
-        <Link href="/" className="flex items-center space-x-2 mr-4">
+        <Link href={`/${locale}`} className="flex items-center gap-2 me-4">
           <Image src={logo} alt="logo" className="size-12" />
           <span className="font-bold">BilalLMS.</span>
         </Link>
 
         {/* desktop navigation */}
         <nav className="hidden md:flex md:flex-1 md:items-center md:justify-between">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2">
             {navigationItems.map((item) => (
               <Link
                 key={item.name}
@@ -40,7 +47,8 @@ function Navbar() {
               </Link>
             ))}
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             <ThemeToggle />
             {isPending ? null : session ? (
               <UserDropdown
@@ -58,13 +66,13 @@ function Navbar() {
             ) : (
               <>
                 <Link
-                  href="/login"
+                  href={`/${locale}/login`}
                   className={buttonVariants({ variant: "secondary" })}
                 >
-                  Login
+                  {t('login')}
                 </Link>
-                <Link href="/login" className={buttonVariants()}>
-                  Get Started
+                <Link href={`/${locale}/login`} className={buttonVariants()}>
+                  {t('getStarted')}
                 </Link>
               </>
             )}
@@ -73,6 +81,7 @@ function Navbar() {
 
         {/* mobile menu button */}
         <div className="flex flex-1 items-center justify-end gap-4 md:hidden">
+          <LanguageSwitcher />
           <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -107,7 +116,7 @@ function Navbar() {
             <div className="flex flex-col space-y-3 pt-4 border-t">
               {isPending ? null : session ? (
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Account</span>
+                  <span className="text-sm font-medium">{t('account')}</span>
                   <UserDropdown
                     email={session.user.email}
                     image={
@@ -124,23 +133,23 @@ function Navbar() {
               ) : (
                 <>
                   <Link
-                    href="/login"
+                    href={`/${locale}/login`}
                     onClick={() => setMobileMenuOpen(false)}
                     className={buttonVariants({
                       variant: "secondary",
                       className: "w-full justify-center",
                     })}
                   >
-                    Login
+                    {t('login')}
                   </Link>
                   <Link
-                    href="/login"
+                    href={`/${locale}/login`}
                     onClick={() => setMobileMenuOpen(false)}
                     className={buttonVariants({
                       className: "w-full justify-center",
                     })}
                   >
-                    Get Started
+                    {t('getStarted')}
                   </Link>
                 </>
               )}

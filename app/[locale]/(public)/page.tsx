@@ -3,6 +3,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { BookOpen, Gamepad2, BarChart, Users } from "lucide-react";
+import { useTranslations } from 'next-intl';
 
 interface FeatureProps {
   title: string;
@@ -10,55 +11,53 @@ interface FeatureProps {
   icon: React.ReactNode;
 }
 
-const features: FeatureProps[] = [
-  {
-    title: "Comprehensive Courses",
-    description:
-      "Access a wide range of carefully curated courses designed by industry experts.",
-    icon: <BookOpen className="h-10 w-10 text-primary" />,
-  },
-  {
-    title: "Interactive Learning",
-    description:
-      "Engage with interactive content, quizzes, and assignments to enhance your learning experience.",
-    icon: <Gamepad2 className="h-10 w-10 text-primary" />,
-  },
-  {
-    title: "Progress Tracking",
-    description:
-      "Monitor your progress and achievements with detailed analytics and personalized dashboards.",
-    icon: <BarChart className="h-10 w-10 text-primary" />,
-  },
-  {
-    title: "Community Support",
-    description:
-      "Join a vibrant community of learners and instructors to collaborate and share knowledge.",
-    icon: <Users className="h-10 w-10 text-primary" />,
-  },
-];
-
 const testimonials = [
   {
     name: "Bilal Ghoul",
     role: "Software Engineer",
     content: "This platform completely transformed my career. The courses are up-to-date and the community is incredibly supportive.",
-    avatar: "SJ"
+    avatar: "BG"
   },
   {
     name: "Mohamed Naim",
     role: "Data Scientist",
     content: "The interactive learning approach helped me grasp complex concepts much faster than traditional methods.",
-    avatar: "MC"
+    avatar: "MN"
   },
   {
     name: "Salim Mansouria",
     role: "Product Designer",
     content: "I love the progress tracking features. Seeing my growth motivates me to keep learning every day.",
-    avatar: "ED"
+    avatar: "SM"
   }
 ];
 
 export default function Home() {
+  const t = useTranslations();
+  
+  const features: FeatureProps[] = [
+    {
+      title: t('Features.comprehensive.title'),
+      description: t('Features.comprehensive.description'),
+      icon: <BookOpen className="h-10 w-10 text-primary" />,
+    },
+    {
+      title: t('Features.interactive.title'),
+      description: t('Features.interactive.description'),
+      icon: <Gamepad2 className="h-10 w-10 text-primary" />,
+    },
+    {
+      title: t('Features.progress.title'),
+      description: t('Features.progress.description'),
+      icon: <BarChart className="h-10 w-10 text-primary" />,
+    },
+    {
+      title: t('Features.community.title'),
+      description: t('Features.community.description'),
+      icon: <Users className="h-10 w-10 text-primary" />,
+    },
+  ];
+
   return (
     <>
       {/* Hero Section */}
@@ -68,35 +67,34 @@ export default function Home() {
         <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 opacity-20 blur-[100px]"></div>
         
         <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto">
-          <Badge variant="secondary" className="px-4 py-2 text-sm">The Future of Online Education</Badge>
+          <Badge variant="secondary" className="px-4 py-2 text-sm">{t('Hero.badge')}</Badge>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-            Elevate your Learning Experience
+            {t('Hero.title')}
           </h1>
           <p className="max-w-[700px] text-muted-foreground md:text-xl leading-relaxed">
-            Discover a new way to learn with our modern, interactive learning
-            management system. Access high-quality courses anytime, anywhere.
+            {t('Hero.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <Link className={buttonVariants({ size: "lg", className: "h-12 px-8 text-base" })} href="/courses">
-              Explore Courses
+              {t('Hero.explore')}
             </Link>
             <Link
               className={buttonVariants({ size: "lg", variant: "outline", className: "h-12 px-8 text-base" })}
               href="/login"
             >
-              Sign in
+              {t('Hero.signIn')}
             </Link>
           </div>
           
           <div className="pt-8 flex items-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-foreground">1k+</span> Students
+              <span className="font-bold text-foreground">1k+</span> {t('Hero.students')}
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-foreground">50+</span> Courses
+              <span className="font-bold text-foreground">50+</span> {t('Hero.courses')}
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-foreground">24/7</span> Support
+              <span className="font-bold text-foreground">24/7</span> {t('Hero.support')}
             </div>
           </div>
         </div>
@@ -105,9 +103,9 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-20">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">Why Choose Us?</h2>
+          <h2 className="text-3xl font-bold tracking-tight mb-4">{t('Features.title')}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            We provide the tools and resources you need to succeed in your learning journey.
+            {t('Features.description')}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -129,9 +127,9 @@ export default function Home() {
       <section className="py-20 bg-muted/30 -mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">What Our Students Say</h2>
+            <h2 className="text-3xl font-bold tracking-tight mb-4">{t('Testimonials.title')}</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Hear from learners who have achieved their goals with our platform.
+              {t('Testimonials.description')}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -160,15 +158,15 @@ export default function Home() {
         <div className="bg-primary text-primary-foreground rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff1a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff1a_1px,transparent_1px)] bg-[size:24px_24px] opacity-20"></div>
           <div className="relative z-10 max-w-2xl mx-auto space-y-8">
-            <h2 className="text-3xl md:text-4xl font-bold">Ready to Start Your Learning Journey?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">{t('CTA.title')}</h2>
             <p className="text-primary-foreground/80 text-lg">
-              Join thousands of learners today and unlock your potential with our expert-led courses.
+              {t('CTA.description')}
             </p>
             <Link 
               href="/courses" 
               className={buttonVariants({ size: "lg", variant: "secondary", className: "h-12 px-8 text-base font-semibold" })}
             >
-              Get Started Now
+              {t('CTA.button')}
             </Link>
           </div>
         </div>
