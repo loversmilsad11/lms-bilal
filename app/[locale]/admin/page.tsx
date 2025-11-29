@@ -1,9 +1,9 @@
 import { ChartAreaInteractive } from "@/components/sidebar/chart-bar-interactive";
 import { SectionCards } from "@/components/sidebar/section-cards";
-import { adminGetEnrollmentStats } from "../data/admin/admin-get-enrollment-stats";
+
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { adminGetRecentCourses } from "../data/admin/admin-get-recent-courses";
+
 import { EmptyState } from "@/components/general/EmptyState";
 import {
   AdminCourseCard,
@@ -11,6 +11,8 @@ import {
 } from "./courses/_components/AdminCourseCard";
 import { Suspense } from "react";
 import { requireAdmin } from "../../data/admin/require-admin";
+import { adminGetEnrollmentStats } from "@/app/data/admin/admin-get-enrollment-stats";
+import { adminGetRecentCourses } from "@/app/data/admin/admin-get-recent-courses";
 
 export default async function AdminIndexPage() {
   await requireAdmin();
