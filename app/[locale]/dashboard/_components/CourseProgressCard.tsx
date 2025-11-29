@@ -1,6 +1,6 @@
 "use client";
 
-import { EnrolledCourseType } from "@/app/data/user/gat-enrolled-courses";
+import { EnrolledCourseType } from "@/app/data/user/get-enrolled-courses";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
