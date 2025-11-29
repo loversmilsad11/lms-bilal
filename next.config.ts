@@ -1,9 +1,10 @@
 import createNextIntlPlugin from 'next-intl/plugin';
+import { NextConfig } from 'next';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
       bodySizeLimit: "100mb",
@@ -12,11 +13,11 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
+        protocol: "https" as const,
         hostname: "utfs.io",
       },
       {
-        protocol: "https",
+        protocol: "https" as const,
         hostname: "avatar.vercel.sh",
       },
     ],
