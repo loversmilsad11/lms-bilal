@@ -66,15 +66,37 @@ export default function UserDropdown({ email, image, name }: iAppProps) {
               <span>Courses</span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="/dashboard">
+          <DropdownMenuItem>
+            <button
+              onClick={async () => {
+                // determine locale from pathname
+                const path = window.location.pathname;
+                const parts = path.split("/").filter(Boolean);
+                const locale = parts.length > 0 ? parts[0] : "";
+                try {
+                  const res = await fetch("/api/session");
+                  if (!res.ok) throw new Error("failed to fetch session");
+                  const { user } = await res.json();
+                  if (user?.role === "admin") {
+                    window.location.href = `${locale ? `/${locale}` : ""}/admin`;
+                  } else if (user) {
+                    window.location.href = `${locale ? `/${locale}` : ""}/dashboard`;
+                  } else {
+                    window.location.href = `${locale ? `/${locale}` : ""}/login`;
+                  }
+                } catch (err) {
+                  window.location.href = "/dashboard";
+                }
+              }}
+              className="flex w-full items-center gap-2"
+            >
               <LayoutDashboardIcon
                 size={16}
                 className="opacity-60"
                 aria-hidden="true"
               />
               <span>Dashboard</span>
-            </Link>
+            </button>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

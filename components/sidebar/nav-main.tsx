@@ -10,7 +10,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 export function NavMain({
@@ -23,6 +23,32 @@ export function NavMain({
   }[];
 }) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function handleDashboardClick(e: React.MouseEvent) {
+    e.preventDefault();
+    // determine current locale from pathname (e.g. /en/...)
+    const path = window.location.pathname;
+    const parts = path.split("/").filter(Boolean);
+    const locale = parts.length > 0 ? parts[0] : "";
+
+    try {
+      const res = await fetch("/api/session");
+      if (!res.ok) throw new Error("failed to fetch session");
+      const { user } = await res.json();
+
+      if (user?.role === "admin") {
+        router.push(`${locale ? `/${locale}` : ""}/admin`);
+      } else if (user) {
+        router.push(`${locale ? `/${locale}` : ""}/dashboard`);
+      } else {
+        router.push(`${locale ? `/${locale}` : ""}/login`);
+      }
+    } catch (err) {
+      // fallback to generic dashboard route
+      router.push("/dashboard");
+    }
+  }
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -47,19 +73,38 @@ export function NavMain({
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton tooltip={item.title} asChild>
-                <Link
-                  href={item.url}
-                  className={cn(
-                    pathname === item.url && "bg-accent text-accent-foreground"
-                  )}
-                >
-                  {item.icon && (
-                    <item.icon
-                      className={cn(pathname === item.url && "text-primary")}
-                    />
-                  )}
-                  <span>{item.title}</span>
-                </Link>
+                {item.url === "/dashboard" ? (
+                  <button
+                    onClick={handleDashboardClick}
+                    className={cn(
+                      "w-full text-left",
+                      pathname === item.url &&
+                        "bg-accent text-accent-foreground"
+                    )}
+                  >
+                    {item.icon && (
+                      <item.icon
+                        className={cn(pathname === item.url && "text-primary")}
+                      />
+                    )}
+                    <span>{item.title}</span>
+                  </button>
+                ) : (
+                  <Link
+                    href={item.url}
+                    className={cn(
+                      pathname === item.url &&
+                        "bg-accent text-accent-foreground"
+                    )}
+                  >
+                    {item.icon && (
+                      <item.icon
+                        className={cn(pathname === item.url && "text-primary")}
+                      />
+                    )}
+                    <span>{item.title}</span>
+                  </Link>
+                )}
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

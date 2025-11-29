@@ -7,25 +7,46 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   // Check if user is admin and redirect to admin panel
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
   if (session?.user.role === "admin") {
-    redirect("/admin");
+    redirect(`/${locale}/admin`);
   }
 
   // If no session, redirect to login
   if (!session) {
-    redirect("/login");
+    redirect(`/${locale}/login`);
   }
 
-  const [courses, enrolledCourses] = await Promise.all([
-    getAllCourses(),
-    getEnrolledCourses(),
-  ]);
+  let courses = [] as Awaited<ReturnType<typeof getAllCourses>>;
+  let enrolledCourses = [] as Awaited<ReturnType<typeof getEnrolledCourses>>;
+
+  try {
+    [courses, enrolledCourses] = await Promise.all([
+      getAllCourses(),
+      getEnrolledCourses(),
+    ]);
+  } catch (err) {
+    return (
+      <div className="p-6">
+        <h2 className="text-xl font-semibold text-red-600">
+          Error loading dashboard
+        </h2>
+        <pre className="mt-4 whitespace-pre-wrap text-sm text-muted-foreground">
+          {String(err)}
+        </pre>
+      </div>
+    );
+  }
 
   return (
     <>
