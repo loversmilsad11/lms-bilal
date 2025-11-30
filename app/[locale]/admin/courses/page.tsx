@@ -9,18 +9,26 @@ import { EmptyState } from "@/components/general/EmptyState";
 import { Suspense } from "react";
 import { requireAdmin } from "@/app/data/admin/require-admin";
 
-async function CoursesPage() {
+async function CoursesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   await requireAdmin();
   return (
     <>
       <div className="flex items-center justify-between ">
         <h1 className="text-2xl font-bold ">Your Courses</h1>
-        <Link className={buttonVariants()} href="/admin/courses/create">
+        <Link
+          className={buttonVariants()}
+          href={`/${locale}/admin/courses/create`}
+        >
           Create Course
         </Link>
       </div>
       <Suspense fallback={<AdminCourseCardSkeletonLayout />}>
-        <RenderCourses />
+        <RenderCourses locale={locale} />
       </Suspense>
     </>
   );
@@ -28,7 +36,7 @@ async function CoursesPage() {
 
 export default CoursesPage;
 
-async function RenderCourses() {
+async function RenderCourses({ locale }: { locale: string }) {
   const data = await adminGetCourses();
   return (
     <>
@@ -37,7 +45,7 @@ async function RenderCourses() {
           title="No courses found"
           description="Create a new course to get started"
           buttonText="Create Course"
-          Href="/admin/courses/create"
+          Href={`/${locale}/admin/courses/create`}
         />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-7">

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
 
 export function NavMain({
@@ -24,6 +25,7 @@ export function NavMain({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const locale = useLocale();
 
   async function handleDashboardClick(e: React.MouseEvent) {
     e.preventDefault();
@@ -60,7 +62,7 @@ export function NavMain({
                 tooltip="Quick Create"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
               >
-                <Link href="/admin/courses/create">
+                <Link href={`/${locale}/admin/courses/create`}>
                   <IconCirclePlusFilled />
                   <span>Quick Create</span>
                 </Link>

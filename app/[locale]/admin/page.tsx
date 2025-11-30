@@ -14,7 +14,12 @@ import { requireAdmin } from "../../data/admin/require-admin";
 import { adminGetEnrollmentStats } from "@/app/data/admin/admin-get-enrollment-stats";
 import { adminGetRecentCourses } from "@/app/data/admin/admin-get-recent-courses";
 
-export default async function AdminIndexPage() {
+export default async function AdminIndexPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   await requireAdmin();
   const enrollmentData = await adminGetEnrollmentStats();
   return (
@@ -28,20 +33,20 @@ export default async function AdminIndexPage() {
           <h2 className="text-xl font-semibold">Recent Courses</h2>
           <Link
             className={buttonVariants({ variant: "outline" })}
-            href="/admin/courses"
+            href={`/${locale}/admin/courses`}
           >
             View All Courses
           </Link>
         </div>
         <Suspense fallback={<RenderRecentCoursesSkeletonLayout />}>
-          <RenderRecentCourses />
+          <RenderRecentCourses locale={locale} />
         </Suspense>
       </div>
     </>
   );
 }
 
-async function RenderRecentCourses() {
+async function RenderRecentCourses({ locale }: { locale: string }) {
   const data = await adminGetRecentCourses();
 
   if (data.length === 0) {
@@ -50,7 +55,7 @@ async function RenderRecentCourses() {
         buttonText="Create new Course"
         description="you dont have any courses. create some to see them her"
         title="You dont have any courses yet!"
-        Href="/admin/courses/create"
+        Href={`/${locale}/admin/courses/create`}
       />
     );
   }
