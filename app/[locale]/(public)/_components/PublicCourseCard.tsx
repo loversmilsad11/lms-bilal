@@ -15,16 +15,18 @@ interface iAppProps {
 export function PublicCourseCard({ data }: iAppProps) {
   const thumbnailUrl = useConstructUrl(data.fileKey);
   return (
-    <Card className="group relative py-0 gap-0">
-      <Badge className="absolute top-2 right-2 z-10">{data.level}</Badge>
+    <Card className="group relative py-0 gap-0 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-primary/10">
+      <Badge className="absolute top-2 end-2 z-10">{data.level}</Badge>
 
-      <Image
-        className="w-full rounded-t-xl aspect-video h-full object-cover"
-        src={thumbnailUrl}
-        alt="thumbnail image of course"
-        width={600}
-        height={400}
-      />
+      <div className="overflow-hidden rounded-t-xl aspect-video h-full">
+        <Image
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          src={thumbnailUrl}
+          alt="thumbnail image of course"
+          width={600}
+          height={400}
+        />
+      </div>
 
       <CardContent className="p-4">
         <Link
@@ -62,7 +64,7 @@ export function PublicCourseCard({ data }: iAppProps) {
 export function PublicCourseCardSkeleton() {
   return (
     <Card className="group relative py-0 gap-0">
-      <div className="absolute top-2 right-2 z-10 flex items-center">
+      <div className="absolute top-2 end-2 z-10 flex items-center">
         <Skeleton className="h-6 w-20 rounded-full " />
       </div>
       <div className="w-full relative h-fit ">

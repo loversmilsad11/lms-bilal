@@ -79,7 +79,7 @@ export function NavMain({
                   <button
                     onClick={handleDashboardClick}
                     className={cn(
-                      "w-full text-left",
+                      "w-full text-start",
                       pathname === item.url &&
                         "bg-accent text-accent-foreground"
                     )}

@@ -64,37 +64,38 @@ export default function Home() {
       <section className="relative py-20 md:py-32 overflow-hidden">
        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
         </div>
-        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 opacity-20 blur-[100px]"></div>
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 opacity-20 blur-[100px] animate-pulse"></div>
+        <div className="absolute right-10 bottom-10 -z-10 h-[200px] w-[200px] rounded-full bg-secondary/20 opacity-20 blur-[80px] animate-pulse delay-700"></div>
         
-        <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto">
-          <Badge variant="secondary" className="px-4 py-2 text-sm">{t('Hero.badge')}</Badge>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+        <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto px-4">
+          <Badge variant="secondary" className="px-4 py-2 text-sm animate-bounce duration-1000">{t('Hero.badge')}</Badge>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground via-primary to-foreground/70 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             {t('Hero.title')}
           </h1>
-          <p className="max-w-[700px] text-muted-foreground md:text-xl leading-relaxed">
+          <p className="max-w-[700px] text-muted-foreground md:text-xl leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-200">
             {t('Hero.description')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <Link className={buttonVariants({ size: "lg", className: "h-12 px-8 text-base" })} href="/courses">
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+            <Link className={buttonVariants({ size: "lg", className: "h-12 px-8 text-base shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all active:scale-95" })} href="/courses">
               {t('Hero.explore')}
             </Link>
             <Link
-              className={buttonVariants({ size: "lg", variant: "outline", className: "h-12 px-8 text-base" })}
+              className={buttonVariants({ size: "lg", variant: "outline", className: "h-12 px-8 text-base hover:bg-accent transition-all active:scale-95" })}
               href="/login"
             >
               {t('Hero.signIn')}
             </Link>
           </div>
           
-          <div className="pt-8 flex items-center gap-8 text-sm text-muted-foreground">
+          <div className="pt-8 flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground animate-in fade-in duration-1000 delay-500">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-foreground">1k+</span> {t('Hero.students')}
+              <span className="font-bold text-foreground text-lg">1k+</span> {t('Hero.students')}
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-foreground">50+</span> {t('Hero.courses')}
+              <span className="font-bold text-foreground text-lg">50+</span> {t('Hero.courses')}
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-foreground">24/7</span> {t('Hero.support')}
+              <span className="font-bold text-foreground text-lg">24/7</span> {t('Hero.support')}
             </div>
           </div>
         </div>
@@ -110,9 +111,9 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
-            <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-primary/10">
+            <Card key={index} className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-primary/10 group">
               <CardHeader>
-                <div className="mb-4 p-3 bg-primary/5 w-fit rounded-lg">{feature.icon}</div>
+                <div className="mb-4 p-3 bg-primary/5 w-fit rounded-lg group-hover:bg-primary/10 transition-colors duration-300">{feature.icon}</div>
                 <CardTitle className="text-xl">{feature.title}</CardTitle>
               </CardHeader>
               <CardContent>
