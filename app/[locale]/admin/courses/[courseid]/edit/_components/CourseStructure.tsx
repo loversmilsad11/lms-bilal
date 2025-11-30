@@ -41,6 +41,7 @@ import { NewChapterModal } from "./NewChapterModal";
 import { NewLessonModal } from "./NewLessonModal";
 import { DeleteLesson } from "./DeleteLesson";
 import { DeleteChapter } from "./DeleteChapter";
+import { useLocale } from "next-intl";
 
 interface iAppProps {
   data: AdminCourseSingularType;
@@ -57,6 +58,7 @@ interface SortableItemProps {
 }
 
 export function CourseStructure({ data }: iAppProps) {
+  const locale = useLocale();
   const initialItems =
     data.chapter.map((chapter) => ({
       id: chapter.id,
@@ -356,7 +358,7 @@ export function CourseStructure({ data }: iAppProps) {
                                       </Button>
                                       <FileText className="size-4" />
                                       <Link
-                                        href={`/admin/courses/${data.id}/${item.id}/${lesson.id}`}
+                                        href={`/${locale}/admin/courses/${data.id}/${item.id}/${lesson.id}`}
                                       >
                                         {lesson.title}
                                       </Link>

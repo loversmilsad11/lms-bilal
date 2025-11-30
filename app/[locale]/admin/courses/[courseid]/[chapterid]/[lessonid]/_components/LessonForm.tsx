@@ -29,6 +29,7 @@ import { useTransition } from "react";
 import { tryCatch } from "@/hooks/try-catch";
 import { updateLesson } from "../actions";
 import { toast } from "sonner";
+import { useLocale } from "next-intl";
 
 interface iAppProps {
   data: AdminLessonType;
@@ -38,6 +39,7 @@ interface iAppProps {
 
 export function LessonForm({ chapterid, data, courseid }: iAppProps) {
   const [pending, startTransition] = useTransition();
+  const locale = useLocale();
   const form = useForm<LessonSchemaType>({
     resolver: zodResolver(lessonSchema),
     defaultValues: {
@@ -71,7 +73,7 @@ export function LessonForm({ chapterid, data, courseid }: iAppProps) {
     <div>
       <Link
         className={buttonVariants({ variant: "outline", className: "mb-6" })}
-        href={`/admin/courses/${courseid}/edit`}
+        href={`/${locale}/admin/courses/${courseid}/edit`}
       >
         <ArrowLeft className="size-4" />
         <span>Go Back</span>
