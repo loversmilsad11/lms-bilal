@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { Butterflies } from "@/components/ui/butterflies";
+import { Starfield } from "@/components/ui/starfield";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -41,7 +43,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
