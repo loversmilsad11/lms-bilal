@@ -4,8 +4,10 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeftIcon, XIcon } from "lucide-react";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 
 export default function PaymentCancelled() {
+  const locale = useLocale();
   return (
     <div className="w-full min-h-screen flex justify-center items-center bg-background">
       <Card className="w-[350px] shadow-md">
@@ -21,7 +23,7 @@ export default function PaymentCancelled() {
           </p>
 
           <Link
-            href="/"
+            href={`/${locale}`}
             className={buttonVariants({ className: "w-full mt-5" })}
           >
             <ArrowLeftIcon className="size-5 mr-1" />

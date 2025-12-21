@@ -3,7 +3,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { BookOpen, Gamepad2, BarChart, Users } from "lucide-react";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface FeatureProps {
   title: string;
@@ -34,7 +34,8 @@ const testimonials = [
 
 export default function Home() {
   const t = useTranslations();
-  
+  const locale = useLocale();
+
   const features: FeatureProps[] = [
     {
       title: t('Features.comprehensive.title'),
@@ -62,11 +63,11 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
-       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
         </div>
         <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 opacity-20 blur-[100px] animate-pulse"></div>
         <div className="absolute right-10 bottom-10 -z-10 h-[200px] w-[200px] rounded-full bg-secondary/20 opacity-20 blur-[80px] animate-pulse delay-700"></div>
-        
+
         <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto px-4">
           <Badge variant="secondary" className="px-4 py-2 text-sm animate-bounce duration-1000">{t('Hero.badge')}</Badge>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground via-primary to-foreground/70 animate-in fade-in slide-in-from-bottom-4 duration-1000">
@@ -76,17 +77,17 @@ export default function Home() {
             {t('Hero.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-            <Link className={buttonVariants({ size: "lg", className: "h-12 px-8 text-base shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all active:scale-95" })} href="/courses">
+            <Link className={buttonVariants({ size: "lg", className: "h-12 px-8 text-base shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all active:scale-95" })} href={`/${locale}/courses`}>
               {t('Hero.explore')}
             </Link>
             <Link
               className={buttonVariants({ size: "lg", variant: "outline", className: "h-12 px-8 text-base hover:bg-accent transition-all active:scale-95" })}
-              href="/login"
+              href={`/${locale}/login`}
             >
               {t('Hero.signIn')}
             </Link>
           </div>
-          
+
           <div className="pt-8 flex flex-wrap justify-center items-center gap-8 text-sm text-muted-foreground animate-in fade-in duration-1000 delay-500">
             <div className="flex items-center gap-2">
               <span className="font-bold text-foreground text-lg">1k+</span> {t('Hero.students')}
@@ -163,8 +164,8 @@ export default function Home() {
             <p className="text-primary-foreground/80 text-lg">
               {t('CTA.description')}
             </p>
-            <Link 
-              href="/courses" 
+            <Link
+              href={`/${locale}/courses`}
               className={buttonVariants({ size: "lg", variant: "secondary", className: "h-12 px-8 text-base font-semibold" })}
             >
               {t('CTA.button')}

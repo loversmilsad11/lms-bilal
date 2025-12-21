@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { useSignOut } from "@/hooks/use-singout";
+import { useLocale } from "next-intl";
 
 interface iAppProps {
   name: string;
@@ -28,6 +29,7 @@ interface iAppProps {
 
 export default function UserDropdown({ email, image, name }: iAppProps) {
   const handleSignOut = useSignOut();
+  const locale = useLocale();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -55,13 +57,13 @@ export default function UserDropdown({ email, image, name }: iAppProps) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link href="/">
+            <Link href={`/${locale}`}>
               <Home size={16} className="opacity-60" aria-hidden="true" />
               <span>Home</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/courses">
+            <Link href={`/${locale}/courses`}>
               <BookOpen size={16} className="opacity-60" aria-hidden="true" />
               <span>Courses</span>
             </Link>

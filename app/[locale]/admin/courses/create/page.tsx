@@ -45,11 +45,13 @@ import { tryCatch } from "@/hooks/try-catch";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useConfetti } from "@/hooks/use-confetti";
+import { useLocale } from "next-intl";
 
 export default function CourseCreationPage() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const { triggerConfetti } = useConfetti();
+  const locale = useLocale();
   // 1. Define your form.
   const form = useForm<CourseSchemaType>({
     resolver: zodResolver(courseSchema),
@@ -79,7 +81,7 @@ export default function CourseCreationPage() {
         toast.success(result.message);
         triggerConfetti();
         form.reset();
-        router.push("/admin/courses");
+        router.push(`/${locale}/admin/courses`);
       } else if (result.status === "error") {
         toast.error(result.message);
       }
@@ -90,7 +92,7 @@ export default function CourseCreationPage() {
     <>
       <div className="flex items-center gap-4">
         <Link
-          href="/admin/courses"
+          href={`/${locale}/admin/courses`}
           className={buttonVariants({ variant: "outline", size: "icon" })}
         >
           <ArrowLeft className="size-4" />

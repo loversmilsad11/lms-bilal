@@ -26,11 +26,13 @@ import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { HomeIcon, Tv2 } from "lucide-react";
 import { useSignOut } from "@/hooks/use-singout";
+import { useLocale } from "next-intl";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
   const { data: session, isPending } = authClient.useSession();
   const handleSignOut = useSignOut();
+  const locale = useLocale();
 
   if (isPending) {
     return null;
@@ -108,21 +110,21 @@ export function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link href="/">
+                <Link href={`/${locale}`}>
                   <HomeIcon />
                   Homepage
                 </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem asChild>
-                <Link href="/admin">
+                <Link href={`/${locale}/admin`}>
                   <IconDashboard />
                   Dashboard
                 </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem asChild>
-                <Link href="/admin/courses">
+                <Link href={`/${locale}/admin/courses`}>
                   <Tv2 />
                   Courses
                 </Link>

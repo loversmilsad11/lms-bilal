@@ -18,6 +18,7 @@ import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState, useTransition } from "react";
 import { toast } from "sonner";
+import { useLocale } from "next-intl";
 
 export default function VerifyRequestRoute() {
   return (
@@ -29,6 +30,7 @@ export default function VerifyRequestRoute() {
 
 export function VerifyRequest() {
   const router = useRouter();
+  const locale = useLocale();
   const [otp, setOtp] = useState("");
   const [emailPending, startTranstion] = useTransition();
   const params = useSearchParams();
@@ -43,7 +45,7 @@ export function VerifyRequest() {
         fetchOptions: {
           onSuccess: () => {
             toast.success("Email verified");
-            router.push("/");
+            router.push(`/${locale}`);
           },
           onError: () => {
             toast.error("Error verifying Email/OTP");

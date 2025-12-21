@@ -38,6 +38,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { editCourse } from "../actions";
 import { AdminCourseSingularType } from "@/app/data/admin/admin-get-course";
+import { useLocale } from "next-intl";
 
 interface iAppProps {
   data: AdminCourseSingularType;
@@ -46,6 +47,7 @@ interface iAppProps {
 function EditCourseForm({ data }: iAppProps) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const locale = useLocale();
 
   const form = useForm<CourseSchemaType>({
     resolver: zodResolver(courseSchema),
@@ -76,7 +78,7 @@ function EditCourseForm({ data }: iAppProps) {
       if (result.status === "success") {
         toast.success(result.message);
         form.reset();
-        router.push("/admin/courses");
+        router.push(`/${locale}/admin/courses`);
       } else if (result.status === "error") {
         toast.error(result.message);
       }

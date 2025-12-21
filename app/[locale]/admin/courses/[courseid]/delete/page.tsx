@@ -15,10 +15,12 @@ import { deleteCourse } from "./actions";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Loader2, Trash2 } from "lucide-react";
+import { useLocale } from "next-intl";
 
 export default function DeleteCourseRoute() {
   const [pending, startTransition] = useTransition();
   const router = useRouter();
+  const locale = useLocale();
   const { courseid } = useParams<{ courseid: string }>();
   function onSubmit() {
     startTransition(async () => {
@@ -30,7 +32,7 @@ export default function DeleteCourseRoute() {
 
       if (result.status === "success") {
         toast.success(result.message);
-        router.push("/admin/courses");
+        router.push(`/${locale}/admin/courses`);
       } else if (result.status === "error") {
         toast.error(result.message);
       }
@@ -47,7 +49,7 @@ export default function DeleteCourseRoute() {
         <CardContent className="flex items-center justify-between">
           <Link
             className={buttonVariants({ variant: "outline" })}
-            href={"/admin/courses"}
+            href={`/${locale}/admin/courses`}
           >
             Cancel
           </Link>

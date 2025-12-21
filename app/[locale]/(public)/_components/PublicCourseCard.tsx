@@ -7,6 +7,7 @@ import { useConstructUrl } from "@/hooks/use-construct-url";
 import { School, TimerIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 
 interface iAppProps {
   data: PublicCourseType;
@@ -14,6 +15,7 @@ interface iAppProps {
 
 export function PublicCourseCard({ data }: iAppProps) {
   const thumbnailUrl = useConstructUrl(data.fileKey);
+  const locale = useLocale();
   return (
     <Card className="group relative py-0 gap-0 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-primary/10">
       <Badge className="absolute top-2 end-2 z-10">{data.level}</Badge>
@@ -31,7 +33,7 @@ export function PublicCourseCard({ data }: iAppProps) {
       <CardContent className="p-4">
         <Link
           className="font-medium text-lg line-clamp-2 hover:underline group-hover:text-primary transition-colors "
-          href={`/courses/${data.slug}`}
+          href={`/${locale}/courses/${data.slug}`}
         >
           {data.title}
         </Link>
@@ -51,7 +53,7 @@ export function PublicCourseCard({ data }: iAppProps) {
         </div>
 
         <Link
-          href={`/courses/${data.slug}`}
+          href={`/${locale}/courses/${data.slug}`}
           className={buttonVariants({ className: "w-full mt-4" })}
         >
           Learn More

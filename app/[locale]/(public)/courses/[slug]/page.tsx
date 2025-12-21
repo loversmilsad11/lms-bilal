@@ -25,10 +25,10 @@ import Link from "next/link";
 import { EnrollmentButton } from "./_components/EnrollmentButton";
 import { buttonVariants } from "@/components/ui/button";
 
-type Params = Promise<{ slug: string }>;
+type Params = Promise<{ slug: string; locale: string }>;
 
 async function SlugPage({ params }: { params: Params }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const course = await getIndividualCourse(slug);
   const isEnrolled = await checkIfCourseBought(course.id);
 
@@ -257,7 +257,7 @@ async function SlugPage({ params }: { params: Params }) {
               {isEnrolled ? (
                 <Link
                   className={buttonVariants({ className: "w-full " })}
-                  href="/dashboard"
+                  href={`/${locale}/dashboard`}
                 >
                   Watch Course
                 </Link>

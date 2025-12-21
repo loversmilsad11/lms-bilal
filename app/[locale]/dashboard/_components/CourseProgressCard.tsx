@@ -10,6 +10,7 @@ import { useConstructUrl } from "@/hooks/use-construct-url";
 import { useCourseProgress } from "@/hooks/use-course-progress";
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 
 interface iAppProps {
   data: EnrolledCourseType;
@@ -17,6 +18,7 @@ interface iAppProps {
 
 export function CourseProgressCard({ data }: iAppProps) {
   const thumbnailUrl = useConstructUrl(data.Course.fileKey);
+  const locale = useLocale();
   const { completedLessons, progressPercentage, totalLessons } =
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useCourseProgress({ courseData: data.Course as any });
@@ -35,7 +37,7 @@ export function CourseProgressCard({ data }: iAppProps) {
       <CardContent className="p-4">
         <Link
           className="font-medium text-lg line-clamp-2 hover:underline group-hover:text-primary transition-colors "
-          href={`/dashboard/${data.Course.slug}`}
+          href={`/${locale}/dashboard/${data.Course.slug}`}
         >
           {data.Course.title}
         </Link>
@@ -56,7 +58,7 @@ export function CourseProgressCard({ data }: iAppProps) {
         </div>
 
         <Link
-          href={`/dashboard/${data.Course.slug}`}
+          href={`/${locale}/dashboard/${data.Course.slug}`}
           className={buttonVariants({ className: "w-full mt-4" })}
         >
           Learn More

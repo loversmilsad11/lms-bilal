@@ -7,10 +7,12 @@ import { IconDashboard } from "@tabler/icons-react";
 import { CheckIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
+import { useLocale } from "next-intl";
 
 export default function PaymentSuccessfull() {
   const { triggerConfetti } = useConfetti();
-  
+  const locale = useLocale();
+
   useEffect(() => {
     triggerConfetti();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,7 +31,7 @@ export default function PaymentSuccessfull() {
               We will contact you via WhatsApp to confirm the order and activate the course. Thank you!
             </p>
             <Link
-              href="/dashboard"
+              href={`/${locale}/dashboard`}
               className={buttonVariants({ className: "w-full mt-5" })}
             >
               <IconDashboard className="size-5 " />

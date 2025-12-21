@@ -14,9 +14,11 @@ import { GithubIcon, Loader, Loader2, Send } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState, useTransition, useEffect } from "react";
 import { toast } from "sonner";
+import { useLocale } from "next-intl";
 
 export function LoginForm() {
   const router = useRouter();
+  const locale = useLocale();
   const [githubPending, startGithubTransition] = useTransition();
   const [googlePending, startGoogleTransition] = useTransition();
   const [emailPending, startEmailTransition] = useTransition();
@@ -85,7 +87,7 @@ export function LoginForm() {
         fetchOptions: {
           onSuccess: () => {
             toast.success("Email sent");
-            router.push(`/verify-request?email=${email}`);
+            router.push(`/${locale}/verify-request?email=${email}`);
           },
           onError: () => {
             toast.error("Erorr sending email");

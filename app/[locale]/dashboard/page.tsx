@@ -62,7 +62,7 @@ export default async function DashboardPage({
           title="No courses purchased"
           description="You have not purchased any courses yet. Browse available courses and start learning!"
           buttonText="Browse Courses"
-          Href="/courses"
+          Href={`/${locale}/courses`}
         />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -90,7 +90,7 @@ export default async function DashboardPage({
             title="No courses available"
             description="You have purchased all available courses!"
             buttonText="Browse Courses"
-            Href="/courses"
+            Href={`/${locale}/courses`}
           />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

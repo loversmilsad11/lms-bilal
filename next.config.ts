@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
         protocol: "https" as const,
         hostname: "avatar.vercel.sh",
       },
+      {
+        protocol: "https" as const,
+        hostname: "bilal-lms.t3.storage.dev",
+      },
     ],
   },
 };
