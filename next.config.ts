@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
         protocol: "https" as const,
         hostname: "bilal-lms.t3.storage.dev",
       },
+      {
+        protocol: "https" as const,
+        hostname: "avatars.githubusercontent.com",
+      },
     ],
   },
 };
