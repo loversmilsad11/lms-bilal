@@ -46,7 +46,7 @@ export function NavMain({
       } else {
         router.push(`${locale ? `/${locale}` : ""}/login`);
       }
-    } catch (err) {
+    } catch {
       // fallback to generic dashboard route
       router.push("/dashboard");
     }
@@ -81,7 +81,7 @@ export function NavMain({
                     className={cn(
                       "w-full text-start",
                       pathname === item.url &&
-                        "bg-accent text-accent-foreground"
+                      "bg-accent text-accent-foreground"
                     )}
                   >
                     {item.icon && (
@@ -96,7 +96,7 @@ export function NavMain({
                     href={item.url}
                     className={cn(
                       pathname === item.url &&
-                        "bg-accent text-accent-foreground"
+                      "bg-accent text-accent-foreground"
                     )}
                   >
                     {item.icon && (

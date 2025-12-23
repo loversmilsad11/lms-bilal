@@ -96,8 +96,8 @@ export function Starfield() {
                 const offsetX = -moveX * star.z * 0.2;
                 const offsetY = -moveY * star.z * 0.2;
 
-                let px = star.baseX + offsetX;
-                let py = star.baseY + offsetY;
+                const px = star.baseX + offsetX;
+                const py = star.baseY + offsetY;
 
                 // Wrap Logic to keep field dense
                 // If star moves off screen, wrap it? 

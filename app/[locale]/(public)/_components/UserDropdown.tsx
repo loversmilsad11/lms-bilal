@@ -86,7 +86,7 @@ export default function UserDropdown({ email, image, name }: iAppProps) {
                   } else {
                     window.location.href = `${locale ? `/${locale}` : ""}/login`;
                   }
-                } catch (err) {
+                } catch {
                   window.location.href = "/dashboard";
                 }
               }}
