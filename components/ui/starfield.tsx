@@ -73,8 +73,8 @@ export function Starfield() {
 
         let animationId: number;
         const isDark = resolvedTheme === "dark";
-        // Colors: Pure White for Dark Mode, Deep Indigo for Light Mode
-        const baseColor = isDark ? "255, 255, 255" : "70, 20, 160";
+        // Colors: Pure White for Dark Mode, Deep Green for Light Mode
+        const baseColor = isDark ? "255, 255, 255" : "20, 80, 40";
 
         const render = () => {
             ctx.clearRect(0, 0, width, height);
